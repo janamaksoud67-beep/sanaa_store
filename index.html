@@ -132,27 +132,28 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
                         url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=2000&auto=format&fit=crop') no-repeat center/cover;
-            padding: 120px 0;
+            padding: 150px 0;
             text-align: center;
             border-radius: 0 0 var(--radius) var(--radius);
             margin-bottom: 60px;
+            color: white;
         }
         
         .hero h2 {
             font-family: 'Amiri', serif;
-            font-size: 4rem;
-            color: var(--primary);
+            font-size: 4.5rem;
             margin-bottom: 20px;
             line-height: 1.2;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
         }
         
         .hero p {
-            font-size: 1.3rem;
-            color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto 40px;
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            opacity: 0.9;
         }
         
         .btn {
@@ -182,11 +183,11 @@
         .btn-secondary {
             background: white;
             color: var(--primary);
-            border: 2px solid var(--primary);
+            border: 2px solid white;
         }
         
         .btn-secondary:hover {
-            background: var(--primary);
+            background: transparent;
             color: white;
             transform: translateY(-5px);
         }
@@ -209,6 +210,78 @@
             max-width: 700px;
             margin: 0 auto;
             font-size: 1.1rem;
+        }
+        
+        /* Categories Section */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .category-image {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .category-card:hover .category-image img {
+            transform: scale(1.1);
+        }
+        
+        .category-info {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .category-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -45px auto 20px;
+            color: white;
+            font-size: 30px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+        }
+        
+        .category-info h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .category-info p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
         
         /* Products Grid */
@@ -360,6 +433,36 @@
             transform: translateY(-3px);
         }
         
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-color: transparent;
+        }
+        
         /* Why Choose Us */
         .features-grid {
             display: grid;
@@ -398,6 +501,35 @@
         .feature-card h3 {
             color: var(--dark);
             margin-bottom: 15px;
+        }
+        
+        /* Statistics */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 1.1rem;
         }
         
         /* Footer */
@@ -542,6 +674,10 @@
             .section-title h2 {
                 font-size: 2.2rem;
             }
+            
+            .hero {
+                padding: 100px 20px;
+            }
         }
         
         /* Animations */
@@ -576,7 +712,7 @@
                     </a>
                     <a href="#" class="nav-link" onclick="showSection('products')">
                         <i class="fas fa-store"></i> Products
-                        <span class="cart-badge" id="productsCount">12</span>
+                        <span class="cart-badge" id="productsCount">24</span>
                     </a>
                     <a href="#" class="nav-link" onclick="showCartModal()">
                         <i class="fas fa-shopping-basket"></i> Cart
@@ -609,14 +745,80 @@
                     </button>
                 </div>
                 
-                <!-- Featured Products -->
-                <div class="section-title">
-                    <h2>Featured Products</h2>
-                    <p>Our best fresh products carefully selected</p>
+                <!-- Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-card animate">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-card animate">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Fresh Products</div>
+                    </div>
+                    <div class="stat-card animate">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Customer Support</div>
+                    </div>
+                    <div class="stat-card animate">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Fresh Quality</div>
+                    </div>
                 </div>
                 
-                <div id="featured-products" class="products-grid">
-                    <!-- Featured products will load here -->
+                <!-- Categories -->
+                <div class="section-title">
+                    <h2>Our Categories</h2>
+                    <p>Browse through our wide selection of fresh products</p>
+                </div>
+                
+                <div class="categories-grid">
+                    <div class="category-card animate" onclick="filterProducts('Vegetables')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=600&h=400&fit=crop" alt="Vegetables">
+                        </div>
+                        <div class="category-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3>Fresh Vegetables</h3>
+                            <p>Fresh and organic vegetables from local farms</p>
+                            <button class="btn" style="background: var(--primary); color: white; width: 100%;">
+                                Browse Products
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card animate" onclick="filterProducts('Fruits')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&h=400&fit=crop" alt="Fruits">
+                        </div>
+                        <div class="category-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3>Seasonal Fruits</h3>
+                            <p>Sweet and juicy fruits for every season</p>
+                            <button class="btn" style="background: var(--primary); color: white; width: 100%;">
+                                Browse Products
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card animate" onclick="filterProducts('Organic')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1589923186741-7d1d6ccee3c3?w=600&h=400&fit=crop" alt="Organic">
+                        </div>
+                        <div class="category-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3>Organic Products</h3>
+                            <p>100% organic and chemical-free products</p>
+                            <button class="btn" style="background: var(--primary); color: white; width: 100%;">
+                                Browse Products
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Why Choose Us -->
@@ -658,6 +860,59 @@
                         <p style="color: var(--gray);">Always here to help with your needs</p>
                     </div>
                 </div>
+                
+                <!-- Testimonials -->
+                <div class="section-title">
+                    <h2>What Our Customers Say</h2>
+                    <p>Real feedback from our happy customers</p>
+                </div>
+                
+                <div class="categories-grid">
+                    <div class="category-card animate" style="text-align: center; padding: 30px;">
+                        <div class="category-icon" style="margin-top: 0; background: var(--secondary);">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Fatima Merheb</h3>
+                        <p style="color: var(--gray); font-style: italic; margin: 15px 0;">"The freshest vegetables I've ever bought. Highly recommended!"</p>
+                        <div style="color: #f39c12;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card animate" style="text-align: center; padding: 30px;">
+                        <div class="category-icon" style="margin-top: 0; background: var(--accent);">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Sanaa Merheb</h3>
+                        <p style="color: var(--gray); font-style: italic; margin: 15px 0;">"Fast delivery and excellent customer service. Thank you!"</p>
+                        <div style="color: #f39c12;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card animate" style="text-align: center; padding: 30px;">
+                        <div class="category-icon" style="margin-top: 0; background: var(--primary);">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Maya Merheb</h3>
+                        <p style="color: var(--gray); font-style: italic; margin: 15px 0;">"Best quality fruits at reasonable prices. Will order again!"</p>
+                        <div style="color: #f39c12;">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
             </section>
             
             <!-- Products Section -->
@@ -665,6 +920,16 @@
                 <div class="section-title">
                     <h2>Our Fresh Products</h2>
                     <p>Browse our complete collection of fresh vegetables and fruits</p>
+                </div>
+                
+                <!-- Category Filter -->
+                <div class="category-filter">
+                    <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+                    <button class="filter-btn" onclick="filterProducts('Vegetables')">Vegetables</button>
+                    <button class="filter-btn" onclick="filterProducts('Fruits')">Fruits</button>
+                    <button class="filter-btn" onclick="filterProducts('Organic')">Organic</button>
+                    <button class="filter-btn" onclick="filterProducts('Herbs')">Herbs</button>
+                    <button class="filter-btn" onclick="filterProducts('Citrus')">Citrus</button>
                 </div>
                 
                 <div id="all-products" class="products-grid">
@@ -895,8 +1160,7 @@
                 
                 <div style="background: white; padding: 20px; border-radius: var(--radius); margin-top: 30px; text-align: left; font-family: monospace; font-size: 14px; overflow-x: auto;">
                     <p style="color: var(--dark); margin-bottom: 10px;">Example of how to edit a product:</p>
-                    <pre style="color: var(--dark);"> 
-                        <!-- hello world -->
+                    <pre style="color: var(--dark);">
 {
     id: 1,
     name: "Fresh Tomatoes",
@@ -922,12 +1186,11 @@
     </div>
 
     <script>
-    // Basic products data
     // ═══════════════════════════════════════════════════════
     // EDIT PRODUCTS HERE - قم بتحرير المنتجات هنا
-    // قم بتعديل الصور، الأسعار، الأوصاف في المصفوفة التالية
     // ═══════════════════════════════════════════════════════
     let products = [
+        // Vegetables
         {
             id: 1,
             name: "Fresh Tomatoes",
@@ -940,46 +1203,16 @@
         },
         {
             id: 2,
-            name: "Premium Apples",
-            price: 2.75,
-            image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&h=400&fit=crop",
-            category: "Fruits",
-            description: "Fresh red apples with sweet taste, rich in vitamins",
-            featured: true,
-            new: false
-        },
-        {
-            id: 3,
             name: "Green Lettuce",
             price: 1.25,
-            image: "https://www.freshaisle.com/cdn/shop/products/fresh-lettuce-romaine-200-gm-exotic-vegetables-398.jpg?v=1739195215",
+            image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600&h=400&fit=crop",
             category: "Vegetables",
             description: "Fresh and crispy lettuce, perfect for salads",
             featured: false,
             new: true
         },
         {
-            id: 4,
-            name: "Bananas",
-            price: 1.80,
-            image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=600&h=400&fit=crop",
-            category: "Fruits",
-            description: "Fresh bananas and rich source of potassium",
-            featured: false,
-            new: false
-        },
-        {
-            id: 5,
-            name: "Strawberries",
-            price: 3.50,
-            image: "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=600&h=400&fit=crop",
-            category: "Fruits",
-            description: "Fresh red strawberries with sweet taste",
-            featured: true,
-            new: false
-        },
-        {
-            id: 6,
+            id: 3,
             name: "Carrots",
             price: 1.20,
             image: "https://www.herbazest.com/imgs/0/0/5/315116/carrot.jpg",
@@ -989,17 +1222,7 @@
             new: true
         },
         {
-            id: 7,
-            name: "Lemons",
-            price: 1.00,
-            image: "https://images.unsplash.com/photo-1547514701-42782101795e?w=600&h=400&fit=crop",
-            category: "Citrus",
-            description: "Fresh and juicy lemons, perfect for juices and cooking",
-            featured: false,
-            new: false
-        },
-        {
-            id: 8,
+            id: 4,
             name: "Potatoes",
             price: 0.85,
             image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=600&h=400&fit=crop",
@@ -1009,27 +1232,17 @@
             new: false
         },
         {
-            id: 9,
-            name: "Black Grapes",
-            price: 4.25,
-            image: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&h=400&fit=crop",
-            category: "Fruits",
-            description: "Fresh black grapes, sweet and rich in antioxidants",
-            featured: false,
-            new: true
-        },
-        {
-            id: 10,
+            id: 5,
             name: "Onions",
             price: 0.90,
-            image: "https://images.apollo247.in/pd-cms/cms/2025-05/AdobeStock_1309389327_Preview.webp?tr=q-80,f-webp,w-400,dpr-2.5,c-at_max%201000w",
+            image: "https://www.veggycation.com.au/siteassets/veggycationvegetable/onion.jpg",
             category: "Vegetables",
             description: "Fresh red onions, high quality",
             featured: false,
             new: false
         },
         {
-            id: 11,
+            id: 6,
             name: "Cucumbers",
             price: 1.10,
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQT19UUTLodCwKT1sEjgfdbWn8WLfiJ3D2d4Q&s",
@@ -1039,13 +1252,231 @@
             new: false
         },
         {
+            id: 7,
+            name: "Bell Peppers",
+            price: 2.50,
+            image: "https://images.unsplash.com/photo-1563565375-f3fdfdbefa8a?w=600&h=400&fit=crop",
+            category: "Vegetables",
+            description: "Colorful bell peppers, sweet and crunchy",
+            featured: false,
+            new: true
+        },
+        {
+            id: 8,
+            name: "Broccoli",
+            price: 2.25,
+            image: "https://images.unsplash.com/photo-1584270354949-c26b0d5b4a0c?w=600&h=400&fit=crop",
+            category: "Vegetables",
+            description: "Fresh green broccoli, rich in nutrients",
+            featured: false,
+            new: true
+        },
+        
+        // Fruits
+        {
+            id: 9,
+            name: "Premium Apples",
+            price: 2.75,
+            image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&h=400&fit=crop",
+            category: "Fruits",
+            description: "Fresh red apples with sweet taste, rich in vitamins",
+            featured: true,
+            new: false
+        },
+        {
+            id: 10,
+            name: "Bananas",
+            price: 1.80,
+            image: "https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=600&h=400&fit=crop",
+            category: "Fruits",
+            description: "Fresh bananas and rich source of potassium",
+            featured: false,
+            new: false
+        },
+        {
+            id: 11,
+            name: "Strawberries",
+            price: 3.50,
+            image: "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=600&h=400&fit=crop",
+            category: "Fruits",
+            description: "Fresh red strawberries with sweet taste",
+            featured: true,
+            new: false
+        },
+        {
             id: 12,
+            name: "Black Grapes",
+            price: 4.25,
+            image: "https://images.unsplash.com/photo-1537640538966-79f369143f8f?w=600&h=400&fit=crop",
+            category: "Fruits",
+            description: "Fresh black grapes, sweet and rich in antioxidants",
+            featured: false,
+            new: true
+        },
+        {
+            id: 13,
+            name: "Watermelon",
+            price: 3.00,
+            image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&h=400&fit=crop",
+            category: "Fruits",
+            description: "Juicy watermelon, perfect for summer",
+            featured: true,
+            new: false
+        },
+        {
+            id: 14,
+            name: "Mangoes",
+            price: 2.90,
+            image: "https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&h=400&fit=crop",
+            category: "Fruits",
+            description: "Sweet and juicy mangoes, tropical delight",
+            featured: false,
+            new: true
+        },
+        {
+            id: 15,
+            name: "Pineapples",
+            price: 3.75,
+            image: "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600&h=400&fit=crop",
+            category: "Fruits",
+            description: "Fresh pineapples, sweet and tangy",
+            featured: false,
+            new: true
+        },
+        {
+            id: 16,
+            name: "Pomegranates",
+            price: 4.50,
+            image: "https://images.unsplash.com/photo-1541344999737-8b5e26f3d1c9?w=600&h=400&fit=crop",
+            category: "Fruits",
+            description: "Fresh pomegranates, rich in antioxidants",
+            featured: true,
+            new: false
+        },
+        
+        // Organic Products
+        {
+            id: 17,
+            name: "Organic Tomatoes",
+            price: 2.25,
+            image: "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=600&h=400&fit=crop",
+            category: "Organic",
+            description: "100% organic tomatoes, chemical-free",
+            featured: true,
+            new: true
+        },
+        {
+            id: 18,
+            name: "Organic Apples",
+            price: 3.50,
+            image: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=600&h=400&fit=crop",
+            category: "Organic",
+            description: "Organic apples, naturally grown",
+            featured: false,
+            new: true
+        },
+        {
+            id: 19,
+            name: "Organic Carrots",
+            price: 1.75,
+            image: "https://images.unsplash.com/photo-1598170845058-78132e1b46d1?w=600&h=400&fit=crop",
+            category: "Organic",
+            description: "Organic carrots, pesticide-free",
+            featured: false,
+            new: false
+        },
+        {
+            id: 20,
+            name: "Organic Lettuce",
+            price: 1.75,
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjozZX7uLTajb5v2JCKeJuD7Dw5E9R9Cl4rg&s",
+            category: "Organic",
+            description: "Organic lettuce, fresh from farm",
+            featured: true,
+            new: false
+        },
+        
+        // Herbs
+        {
+            id: 21,
+            name: "Fresh Mint",
+            price: 0.75,
+            image: "https://images.unsplash.com/photo-1587049633312-d628ae50a8ae?w=600&h=400&fit=crop",
+            category: "Herbs",
+            description: "Fresh mint leaves, aromatic",
+            featured: false,
+            new: true
+        },
+        {
+            id: 22,
+            name: "Parsley",
+            price: 0.65,
+            image: "https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=600&h=400&fit=crop",
+            category: "Herbs",
+            description: "Fresh parsley, perfect for garnishing",
+            featured: false,
+            new: false
+        },
+        {
+            id: 23,
+            name: "Basil",
+            price: 0.85,
+            image: "https://images.unsplash.com/photo-1564827520081-0e59d1a069cd?w=600&h=400&fit=crop",
+            category: "Herbs",
+            description: "Fresh basil leaves, aromatic",
+            featured: true,
+            new: true
+        },
+        {
+            id: 24,
+            name: "Coriander",
+            price: 0.70,
+            image: "https://images.unsplash.com/photo-1587049352851-8d4e89133924?w=600&h=400&fit=crop",
+            category: "Herbs",
+            description: "Fresh coriander, flavorful",
+            featured: false,
+            new: true
+        },
+        
+        // Citrus
+        {
+            id: 25,
+            name: "Lemons",
+            price: 1.00,
+            image: "https://images.unsplash.com/photo-1547514701-42782101795e?w=600&h=400&fit=crop",
+            category: "Citrus",
+            description: "Fresh and juicy lemons, perfect for juices and cooking",
+            featured: false,
+            new: false
+        },
+        {
+            id: 26,
             name: "Oranges",
             price: 1.65,
             image: "https://images.unsplash.com/photo-1547514701-42782101795e?w=600&h=400&fit=crop",
             category: "Citrus",
             description: "Fresh and juicy oranges, rich in vitamin C",
             featured: false,
+            new: true
+        },
+        {
+            id: 27,
+            name: "Grapefruit",
+            price: 2.25,
+            image: "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?w=600&h=400&fit=crop",
+            category: "Citrus",
+            description: "Fresh grapefruit, tangy and refreshing",
+            featured: false,
+            new: false
+        },
+        {
+            id: 28,
+            name: "Limes",
+            price: 0.95,
+            image: "https://images.unsplash.com/photo-1547514701-42782101795e?w=600&h=400&fit=crop",
+            category: "Citrus",
+            description: "Fresh limes, perfect for drinks",
+            featured: true,
             new: true
         }
     ];
@@ -1055,6 +1486,9 @@
     
     // Admin password (secure)
     const ADMIN_PASSWORD = "sanaa@2024";
+    
+    // Current filter
+    let currentFilter = 'all';
     
     // Page load
     document.addEventListener('DOMContentLoaded', function() {
@@ -1074,7 +1508,7 @@
             });
         }, { threshold: 0.1 });
         
-        document.querySelectorAll('.product-card, .feature-card').forEach(el => {
+        document.querySelectorAll('.product-card, .feature-card, .category-card, .stat-card').forEach(el => {
             observer.observe(el);
         });
     });
@@ -1115,61 +1549,42 @@
     
     // Render home page
     function renderHomePage() {
-        let featuredHtml = '';
+        // Nothing needed here since home page is static with categories
+    }
+    
+    // Filter products by category
+    function filterProducts(category) {
+        currentFilter = category;
         
-        // Featured products
-        const featuredProducts = products.filter(p => p.featured);
-        if (featuredProducts.length > 0) {
-            featuredHtml += '<div class="products-grid">';
-            featuredProducts.forEach(product => {
-                featuredHtml += `
-                    <div class="product-card">
-                        ${product.featured ? '<div class="product-badge featured"><i class="fas fa-star"></i> Featured</div>' : ''}
-                        ${product.new ? '<div class="product-badge new"><i class="fas fa-certificate"></i> New</div>' : ''}
-                        
-                        <div class="product-image">
-                            <img src="${product.image}" alt="${product.name}">
-                        </div>
-                        
-                        <div class="product-info">
-                            <div class="product-category">
-                                <i class="fas fa-tag"></i> ${product.category}
-                            </div>
-                            <h3 class="product-name">${product.name}</h3>
-                            <p class="product-description">${product.description}</p>
-                            <div class="product-price">
-                                <div class="price">$${product.price.toFixed(2)}<span class="price-unit"> / kg</span></div>
-                            </div>
-                            <div class="contact-options">
-                                <a href="https://wa.me/96171807480?text=Hello, I want to order ${encodeURIComponent(product.name)} for $${product.price} per kg" 
-                                   class="whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
-                                </a>
-                                <a href="tel:+96171807480" class="call-btn">
-                                    <i class="fas fa-phone"></i> Call to Order
-                                </a>
-                                <button onclick="addToCart(${product.id})" class="btn" style="background: var(--light); color: var(--dark); margin-top: 5px; width: 100%;">
-                                    <i class="fas fa-cart-plus"></i> Add to Cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            featuredHtml += '</div>';
-        } else {
-            featuredHtml = '<p style="text-align: center; color: var(--gray); grid-column: 1/-1;">No featured products currently</p>';
-        }
+        // Update filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
         
-        document.getElementById('featured-products').innerHTML = featuredHtml;
+        // Activate current filter button
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(btn => {
+            if (btn.textContent.includes(category.charAt(0).toUpperCase() + category.slice(1)) || 
+                (category === 'all' && btn.textContent === 'All Products')) {
+                btn.classList.add('active');
+            }
+        });
+        
+        renderProductsPage();
     }
     
     // Render products page
     function renderProductsPage() {
         let productsHtml = '';
         
-        if (products.length > 0) {
-            products.forEach(product => {
+        // Filter products
+        let filteredProducts = products;
+        if (currentFilter !== 'all') {
+            filteredProducts = products.filter(p => p.category === currentFilter);
+        }
+        
+        if (filteredProducts.length > 0) {
+            filteredProducts.forEach(product => {
                 productsHtml += `
                     <div class="product-card">
                         ${product.featured ? '<div class="product-badge featured"><i class="fas fa-star"></i> Featured</div>' : ''}
@@ -1205,7 +1620,11 @@
                 `;
             });
         } else {
-            productsHtml = '<p style="text-align: center; color: var(--gray); grid-column: 1/-1;">No products currently</p>';
+            productsHtml = `<div style="text-align: center; color: var(--gray); grid-column: 1/-1; padding: 40px;">
+                <i class="fas fa-box-open" style="font-size: 60px; margin-bottom: 20px; color: #ddd;"></i>
+                <h3>No products in this category</h3>
+                <p>Check back soon for new arrivals!</p>
+            </div>`;
         }
         
         document.getElementById('all-products').innerHTML = productsHtml;
