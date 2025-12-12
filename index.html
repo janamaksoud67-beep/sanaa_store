@@ -227,6 +227,7 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             position: relative;
+            cursor: pointer;
         }
         
         .category-card:hover {
@@ -310,8 +311,6 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: var(--secondary);
-            color: white;
             padding: 8px 20px;
             border-radius: 50px;
             font-weight: 600;
@@ -329,10 +328,26 @@
             color: white;
         }
         
+        .product-badge.out-of-stock {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+        }
+        
         .product-image {
             height: 250px;
             width: 100%;
             overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image.out-of-stock::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
         }
         
         .product-image img {
@@ -383,10 +398,37 @@
             border-top: 2px dashed #eee;
         }
         
+        .price-container {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
         .price {
             font-size: 1.8rem;
             font-weight: 700;
             color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .price-lbp {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .lbp-flag {
+            width: 20px;
+            height: 15px;
+            background: linear-gradient(to bottom, #ed1c24 33.33%, white 33.33%, white 66.66%, #ed1c24 66.66%);
+            border: 1px solid #ccc;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: 2px;
         }
         
         .price-unit {
@@ -401,7 +443,7 @@
             margin-top: 15px;
         }
         
-        .whatsapp-btn, .call-btn {
+        .whatsapp-btn, .call-btn, .fast-delivery-btn {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -430,6 +472,17 @@
         
         .call-btn:hover {
             background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .fast-delivery-btn {
+            background: #e74c3c;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .fast-delivery-btn:hover {
+            background: #c0392b;
             transform: translateY(-3px);
         }
         
@@ -530,6 +583,118 @@
         .stat-label {
             color: var(--gray);
             font-size: 1.1rem;
+        }
+        
+        /* Store Location */
+        .store-location {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin: 60px 0;
+        }
+        
+        .location-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 25px 40px;
+        }
+        
+        .location-header h3 {
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .location-content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        @media (max-width: 992px) {
+            .location-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: var(--shadow);
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+        
+        .map-placeholder i {
+            font-size: 80px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .address-info {
+            padding: 20px;
+        }
+        
+        .address-info h4 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .address-details {
+            list-style: none;
+        }
+        
+        .address-details li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--gray);
+        }
+        
+        .address-details i {
+            color: var(--primary);
+            width: 25px;
+        }
+        
+        /* Out of Stock Styles */
+        .out-of-stock-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1.2rem;
+            z-index: 3;
+        }
+        
+        .out-of-stock-btn {
+            background: #95a5a6 !important;
+            color: white !important;
+            cursor: not-allowed !important;
+        }
+        
+        .out-of-stock-btn:hover {
+            transform: none !important;
+            background: #7f8c8d !important;
         }
         
         /* Footer */
@@ -678,6 +843,14 @@
             .hero {
                 padding: 100px 20px;
             }
+            
+            .price {
+                font-size: 1.5rem;
+            }
+            
+            .price-lbp {
+                font-size: 1rem;
+            }
         }
         
         /* Animations */
@@ -712,7 +885,7 @@
                     </a>
                     <a href="#" class="nav-link" onclick="showSection('products')">
                         <i class="fas fa-store"></i> Products
-                        <span class="cart-badge" id="productsCount">24</span>
+                        <span class="cart-badge" id="productsCount">35</span>
                     </a>
                     <a href="#" class="nav-link" onclick="showCartModal()">
                         <i class="fas fa-shopping-basket"></i> Cart
@@ -740,28 +913,60 @@
                     <button class="btn btn-primary" onclick="showSection('products')">
                         <i class="fas fa-shopping-bag"></i> Shop Now
                     </button>
-                    <button class="btn btn-secondary" style="margin-left: 15px;" onclick="showSection('about')">
-                        <i class="fas fa-phone"></i> Contact Us
+                    <button class="btn btn-secondary" style="margin-left: 15px;" onclick="scrollToLocation()">
+                        <i class="fas fa-map-marker-alt"></i> Visit Our Store
                     </button>
                 </div>
                 
                 <!-- Statistics -->
                 <div class="stats-grid">
                     <div class="stat-card animate">
-                        <div class="stat-number">200+</div>
+                        <div class="stat-number">500+</div>
                         <div class="stat-label">Happy Customers</div>
                     </div>
                     <div class="stat-card animate">
-                        <div class="stat-number">50+</div>
+                        <div class="stat-number">35+</div>
                         <div class="stat-label">Fresh Products</div>
                     </div>
                     <div class="stat-card animate">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Customer Support</div>
+                        <div class="stat-number">Fast</div>
+                        <div class="stat-label">Delivery Service</div>
                     </div>
                     <div class="stat-card animate">
                         <div class="stat-number">100%</div>
                         <div class="stat-label">Fresh Quality</div>
+                    </div>
+                </div>
+                
+                <!-- Store Location -->
+                <div class="store-location animate">
+                    <div class="location-header">
+                        <h3><i class="fas fa-map-marker-alt"></i> Visit Our Store</h3>
+                    </div>
+                    <div class="location-content">
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <i class="fas fa-store"></i>
+                                <h4>Souq Sanaa Store</h4>
+                                <p>Click the button below to view on Google Maps</p>
+                                <a href="https://www.google.com/maps?q=Tripoli,Lebanon&hl=en" target="_blank" class="btn btn-primary" style="margin-top: 20px;">
+                                    <i class="fas fa-external-link-alt"></i> Open in Google Maps
+                                </a>
+                            </div>
+                        </div>
+                        <div class="address-info">
+                            <h4>Store Information</h4>
+                            <ul class="address-details">
+                                <li><i class="fas fa-map-pin"></i> <strong>Address:</strong> Tripoli Main Street, Tripoli, Lebanon</li>
+                                <li><i class="fas fa-clock"></i> <strong>Working Hours:</strong> 8:00 AM - 10:00 PM Daily</li>
+                                <li><i class="fas fa-phone"></i> <strong>Phone:</strong> +961 71 807480</li>
+                                <li><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> +961 71 807480</li>
+                                <li><i class="fas fa-truck"></i> <strong>Delivery:</strong> Free delivery for orders over $20</li>
+                            </ul>
+                            <button onclick="showFastDeliveryInfo()" class="btn" style="background: #e74c3c; color: white; margin-top: 20px; width: 100%;">
+                                <i class="fas fa-bolt"></i> FAST DELIVERY Available
+                            </button>
+                        </div>
                     </div>
                 </div>
                 
@@ -814,6 +1019,54 @@
                         <div class="category-info">
                             <h3>Organic Products</h3>
                             <p>100% organic and chemical-free products</p>
+                            <button class="btn" style="background: var(--primary); color: white; width: 100%;">
+                                Browse Products
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card animate" onclick="filterProducts('Juices')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=400&fit=crop" alt="Fresh Juices">
+                        </div>
+                        <div class="category-icon">
+                            <i class="fas fa-glass-whiskey"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3>Fresh Juices</h3>
+                            <p>100% natural fresh juices and smoothies</p>
+                            <button class="btn" style="background: var(--primary); color: white; width: 100%;">
+                                Browse Products
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card animate" onclick="filterProducts('Specials')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop" alt="Sanaa Specials">
+                        </div>
+                        <div class="category-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3>Sanaa Specials</h3>
+                            <p>Exclusive products and special offers</p>
+                            <button class="btn" style="background: var(--primary); color: white; width: 100%;">
+                                Browse Products
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card animate" onclick="filterProducts('Herbs')">
+                        <div class="category-image">
+                            <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=600&h=400&fit=crop" alt="Herbs">
+                        </div>
+                        <div class="category-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <div class="category-info">
+                            <h3>Fresh Herbs</h3>
+                            <p>Aromatic herbs for cooking and health</p>
                             <button class="btn" style="background: var(--primary); color: white; width: 100%;">
                                 Browse Products
                             </button>
@@ -928,8 +1181,11 @@
                     <button class="filter-btn" onclick="filterProducts('Vegetables')">Vegetables</button>
                     <button class="filter-btn" onclick="filterProducts('Fruits')">Fruits</button>
                     <button class="filter-btn" onclick="filterProducts('Organic')">Organic</button>
+                    <button class="filter-btn" onclick="filterProducts('Juices')">Fresh Juices</button>
+                    <button class="filter-btn" onclick="filterProducts('Specials')">Sanaa Specials</button>
                     <button class="filter-btn" onclick="filterProducts('Herbs')">Herbs</button>
-                    <button class="filter-btn" onclick="filterProducts('Citrus')">Citrus</button>
+                    <button class="filter-btn" onclick="filterProducts('in-stock')">In Stock</button>
+                    <button class="filter-btn" onclick="filterProducts('out-of-stock')">Out of Stock</button>
                 </div>
                 
                 <div id="all-products" class="products-grid">
@@ -1087,6 +1343,10 @@
                     <strong>Total Amount:</strong>
                     <span id="cartTotal" style="font-size: 1.5rem; color: var(--primary);">$0.00</span>
                 </div>
+                <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.9rem; color: var(--gray);">
+                    <span>In Lebanese Pounds:</span>
+                    <span id="cartTotalLBP">0 LBP</span>
+                </div>
             </div>
             
             <div style="display: flex; gap: 10px;">
@@ -1100,6 +1360,42 @@
                     <i class="fab fa-whatsapp"></i> Order via WhatsApp
                 </button>
             </div>
+        </div>
+    </div>
+    
+    <!-- Fast Delivery Info Modal -->
+    <div id="fastDeliveryModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 9999; justify-content: center; align-items: center;">
+        <div style="background: white; border-radius: var(--radius); width: 90%; max-width: 500px; padding: 30px; position: relative;">
+            <span onclick="closeFastDeliveryModal()" style="position: absolute; top: 15px; right: 20px; font-size: 30px; cursor: pointer; color: var(--gray);">&times;</span>
+            
+            <h2 style="color: #e74c3c; margin-bottom: 20px;">
+                <i class="fas fa-bolt"></i> Fast Delivery Service
+            </h2>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: var(--primary); margin-bottom: 15px;">🚚 Same-Day Delivery Available!</h4>
+                <ul style="color: var(--gray); line-height: 1.8; padding-left: 20px;">
+                    <li>Orders placed before 2:00 PM delivered same day</li>
+                    <li>Free delivery for orders over $20</li>
+                    <li>Delivery charge: $3 for orders under $20</li>
+                    <li>Delivery areas: Tripoli and surrounding areas</li>
+                    <li>Delivery time: 1-3 hours</li>
+                </ul>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h4 style="color: var(--primary); margin-bottom: 10px;">📞 How to Order Fast Delivery:</h4>
+                <ol style="color: var(--gray); line-height: 1.8; padding-left: 20px;">
+                    <li>Add products to your cart</li>
+                    <li>Click "Order via WhatsApp"</li>
+                    <li>Mention "FAST DELIVERY" in your message</li>
+                    <li>We'll confirm delivery time within 15 minutes</li>
+                </ol>
+            </div>
+            
+            <button onclick="closeFastDeliveryModal()" class="btn" style="background: #e74c3c; color: white; width: 100%;">
+                <i class="fas fa-check"></i> Got it!
+            </button>
         </div>
     </div>
     
@@ -1169,14 +1465,15 @@
     category: "Vegetables",
     description: "New description here",
     featured: true,
-    new: true
+    new: true,
+    inStock: true  // Set to false for out of stock
 }
                     </pre>
                 </div>
             </div>
             
             <h3 style="color: var(--primary); margin-bottom: 20px; text-align: left;">
-                <i class="fas fa-shopping-bag"></i> Current Products
+                <i class="fas fa-shopping-bag"></i> Current Products (${products.length})
             </h3>
             
             <div id="adminProductsList" style="background: white; padding: 20px; border-radius: var(--radius); box-shadow: var(--shadow);">
@@ -1199,7 +1496,8 @@
             category: "Vegetables",
             description: "Fresh red organic tomatoes, perfect for salads and cooking",
             featured: true,
-            new: true
+            new: true,
+            inStock: true
         },
         {
             id: 2,
@@ -1209,7 +1507,8 @@
             category: "Vegetables",
             description: "Fresh and crispy lettuce, perfect for salads",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         {
             id: 3,
@@ -1219,7 +1518,8 @@
             category: "Vegetables",
             description: "Fresh and crispy carrots, rich in vitamin A",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         {
             id: 4,
@@ -1229,7 +1529,8 @@
             category: "Vegetables",
             description: "Fresh and high-quality potatoes",
             featured: true,
-            new: false
+            new: false,
+            inStock: true
         },
         {
             id: 5,
@@ -1239,7 +1540,8 @@
             category: "Vegetables",
             description: "Fresh red onions, high quality",
             featured: false,
-            new: false
+            new: false,
+            inStock: false  // Out of stock example
         },
         {
             id: 6,
@@ -1249,7 +1551,8 @@
             category: "Vegetables",
             description: "Fresh and crispy cucumbers, perfect for salads",
             featured: true,
-            new: false
+            new: false,
+            inStock: true
         },
         {
             id: 7,
@@ -1259,7 +1562,8 @@
             category: "Vegetables",
             description: "Colorful bell peppers, sweet and crunchy",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         {
             id: 8,
@@ -1269,7 +1573,8 @@
             category: "Vegetables",
             description: "Fresh green broccoli, rich in nutrients",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         
         // Fruits
@@ -1281,7 +1586,8 @@
             category: "Fruits",
             description: "Fresh red apples with sweet taste, rich in vitamins",
             featured: true,
-            new: false
+            new: false,
+            inStock: true
         },
         {
             id: 10,
@@ -1291,7 +1597,8 @@
             category: "Fruits",
             description: "Fresh bananas and rich source of potassium",
             featured: false,
-            new: false
+            new: false,
+            inStock: true
         },
         {
             id: 11,
@@ -1301,7 +1608,8 @@
             category: "Fruits",
             description: "Fresh red strawberries with sweet taste",
             featured: true,
-            new: false
+            new: false,
+            inStock: false  // Out of stock example
         },
         {
             id: 12,
@@ -1311,17 +1619,19 @@
             category: "Fruits",
             description: "Fresh black grapes, sweet and rich in antioxidants",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         {
             id: 13,
             name: "Watermelon",
             price: 3.00,
-            image: "data:image/jpeg;base64,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",
+            image: "https://images.unsplash.com/photo-1563114773-84221bd62f17?w=600&h=400&fit=crop",
             category: "Fruits",
             description: "Juicy watermelon, perfect for summer",
             featured: true,
-            new: false
+            new: false,
+            inStock: true
         },
         {
             id: 14,
@@ -1331,7 +1641,8 @@
             category: "Fruits",
             description: "Sweet and juicy mangoes, tropical delight",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         {
             id: 15,
@@ -1341,7 +1652,8 @@
             category: "Fruits",
             description: "Fresh pineapples, sweet and tangy",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         {
             id: 16,
@@ -1351,7 +1663,8 @@
             category: "Fruits",
             description: "Fresh pomegranates, rich in antioxidants",
             featured: true,
-            new: false
+            new: false,
+            inStock: true
         },
         
         // Organic Products
@@ -1363,7 +1676,8 @@
             category: "Organic",
             description: "100% organic tomatoes, chemical-free",
             featured: true,
-            new: true
+            new: true,
+            inStock: false
         },
         {
             id: 18,
@@ -1373,7 +1687,8 @@
             category: "Organic",
             description: "Organic apples, naturally grown",
             featured: false,
-            new: true
+            new: true,
+            inStock: false
         },
         {
             id: 19,
@@ -1383,103 +1698,197 @@
             category: "Organic",
             description: "Organic carrots, pesticide-free",
             featured: false,
-            new: false
+            new: false,
+            inStock: false  // Out of stock example
         },
+        
+        // Fresh Juices
         {
             id: 20,
-            name: "Organic Lettuce",
-            price: 1.75,
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjozZX7uLTajb5v2JCKeJuD7Dw5E9R9Cl4rg&s",
-            category: "Organic",
-            description: "Organic lettuce, fresh from farm",
+            name: "Orange Juice (1L)",
+            price: 4.50,
+            image: "https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=600&h=400&fit=crop",
+            category: "Juices",
+            description: "100% fresh orange juice",
             featured: true,
-            new: false
+            new: true,
+            inStock: false
+        },
+        {
+            id: 21,
+            name: "Apple Juice (1L)",
+            price: 4.00,
+            image: "",
+            category: "Juices",
+            description: "Fresh apple juice, natural sweetness",
+            featured: false,
+            new: true,
+            inStock: false
+        },
+        {
+            id: 22,
+            name: "Mixed Fruit Juice (1L)",
+            price: 5.00,
+            image: "",
+            category: "Juices",
+            description: "Blend of orange, apple, and pineapple",
+            featured: true,
+            new: false,
+            inStock: false
+        },
+        {
+            id: 23,
+            name: "Carrot Juice (1L)",
+            price: 3.75,
+            image: "",
+            category: "Juices",
+            description: "Fresh carrot juice, rich in vitamin A",
+            featured: false,
+            new: true,
+            inStock: false
+        },
+        
+        // Sanaa Specials
+        {
+            id: 24,
+            name: "Sanaa Fresh Salad Pack",
+            price: 6.50,
+            image: "",
+            category: "Specials",
+            description: "Special salad pack with fresh vegetables",
+            featured: true,
+            new: true,
+            inStock: false
+        },
+        {
+            id: 25,
+            name: "Organic Vegetable Box",
+            price: 12.00,
+            image: "",
+            category: "Specials",
+            description: "Weekly organic vegetable subscription box",
+            featured: true,
+            new: false,
+            inStock: false
+        },
+        {
+            id: 26,
+            name: "Fresh Fruit Basket",
+            price: 15.00,
+            image: "",
+            category: "Specials",
+            description: "Gift basket with seasonal fruits",
+            featured: false,
+            new: true,
+            inStock: false
+        },
+        {
+            id: 27,
+            name: "Sanaa Juice Combo",
+            price: 10.00,
+            image: "",
+            category: "Specials",
+            description: "Set of 3 different fresh juices (1L each)",
+            featured: true,
+            new: true,
+            inStock: false  // Out of stock example
         },
         
         // Herbs
         {
-            id: 21,
+            id: 28,
             name: "Fresh Mint",
             price: 0.75,
-            image: "data:image/jpeg;base64,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",
+            image: "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=600&h=400&fit=crop",
             category: "Herbs",
             description: "Fresh mint leaves, aromatic",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         {
-            id: 22,
+            id: 29,
             name: "Parsley",
             price: 0.65,
             image: "https://cdn.mafrservices.com/sys-master-root/h84/h91/9892034904094/9354_main.jpg?im=Resize=376",
             category: "Herbs",
             description: "Fresh parsley, perfect for garnishing",
             featured: false,
-            new: false
+            new: false,
+            inStock: true
         },
         {
-            id: 23,
+            id: 30,
             name: "Basil",
             price: 0.85,
             image: "https://balifoodstore.com/724-full_default/basil-100gr.jpg",
             category: "Herbs",
             description: "Fresh basil leaves, aromatic",
             featured: true,
-            new: true
+            new: true,
+            inStock: true
         },
         {
-            id: 24,
+            id: 31,
             name: "Coriander",
             price: 0.70,
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1J3RyR_156HIvkyfrIdvwFsO0uE0kQcXRJA&s",
             category: "Herbs",
             description: "Fresh coriander, flavorful",
             featured: false,
-            new: true
+            new: true,
+            inStock: false  // Out of stock example
         },
         
         // Citrus
         {
-            id: 25,
+            id: 32,
             name: "Lemons",
             price: 1.00,
             image: "https://beerco.com.au/cdn/shop/files/LEMONVLAVOURIMAGE.jpg?v=1699486958",
             category: "Citrus",
             description: "Fresh and juicy lemons, perfect for juices and cooking",
             featured: false,
-            new: false
+            new: false,
+            inStock: true
         },
         {
-            id: 26,
+            id: 33,
             name: "Oranges",
             price: 1.65,
             image: "https://images.unsplash.com/photo-1547514701-42782101795e?w=600&h=400&fit=crop",
             category: "Citrus",
             description: "Fresh and juicy oranges, rich in vitamin C",
             featured: false,
-            new: true
+            new: true,
+            inStock: true
         },
         {
-            id: 27,
+            id: 34,
             name: "Grapefruit",
             price: 2.25,
             image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOniayWm0sC3aXm9Lw93_F98cOBkf9Un7DEw&s",
             category: "Citrus",
             description: "Fresh grapefruit, tangy and refreshing",
             featured: false,
-            new: false
+            new: false,
+            inStock: true
         },
         {
-            id: 28,
+            id: 35,
             name: "Limes",
             price: 0.95,
             image: "https://tradewindsorientalshop.co.uk/cdn/shop/products/Limes_3_Pieces_700x700.jpg?v=1626789163",
             category: "Citrus",
             description: "Fresh limes, perfect for drinks",
             featured: true,
-            new: true
+            new: true,
+            inStock: true
         }
     ];
+    
+    // Exchange rate: 1 USD = 150,000 LBP (approximate)
+    const EXCHANGE_RATE = 150000;
     
     // Cart
     let cart = JSON.parse(localStorage.getItem('sanaaCart')) || [];
@@ -1520,6 +1929,21 @@
         }
     }
     
+    // Convert USD to LBP
+    function usdToLbp(usdAmount) {
+        return Math.round(usdAmount * EXCHANGE_RATE);
+    }
+    
+    // Format LBP price
+    function formatLbpPrice(lbpAmount) {
+        if (lbpAmount >= 1000000) {
+            return (lbpAmount / 1000000).toFixed(1) + 'M LBP';
+        } else if (lbpAmount >= 1000) {
+            return (lbpAmount / 1000).toFixed(0) + 'K LBP';
+        }
+        return lbpAmount.toLocaleString() + ' LBP';
+    }
+    
     // Show sections
     function showSection(section) {
         // Hide all sections
@@ -1552,6 +1976,24 @@
         // Nothing needed here since home page is static with categories
     }
     
+    // Scroll to location section
+    function scrollToLocation() {
+        const locationSection = document.querySelector('.store-location');
+        if (locationSection) {
+            locationSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    
+    // Show fast delivery info
+    function showFastDeliveryInfo() {
+        document.getElementById('fastDeliveryModal').style.display = 'flex';
+    }
+    
+    // Close fast delivery modal
+    function closeFastDeliveryModal() {
+        document.getElementById('fastDeliveryModal').style.display = 'none';
+    }
+    
     // Filter products by category
     function filterProducts(category) {
         currentFilter = category;
@@ -1564,8 +2006,14 @@
         // Activate current filter button
         const filterButtons = document.querySelectorAll('.filter-btn');
         filterButtons.forEach(btn => {
-            if (btn.textContent.includes(category.charAt(0).toUpperCase() + category.slice(1)) || 
-                (category === 'all' && btn.textContent === 'All Products')) {
+            const btnText = btn.textContent.toLowerCase();
+            const categoryText = category.toLowerCase();
+            
+            if ((category === 'all' && btnText === 'all products') ||
+                (category === 'in-stock' && btnText === 'in stock') ||
+                (category === 'out-of-stock' && btnText === 'out of stock') ||
+                (category !== 'all' && category !== 'in-stock' && category !== 'out-of-stock' && 
+                 btnText.includes(categoryText))) {
                 btn.classList.add('active');
             }
         });
@@ -1579,19 +2027,29 @@
         
         // Filter products
         let filteredProducts = products;
-        if (currentFilter !== 'all') {
+        
+        if (currentFilter === 'in-stock') {
+            filteredProducts = products.filter(p => p.inStock === true);
+        } else if (currentFilter === 'out-of-stock') {
+            filteredProducts = products.filter(p => p.inStock === false);
+        } else if (currentFilter !== 'all') {
             filteredProducts = products.filter(p => p.category === currentFilter);
         }
         
         if (filteredProducts.length > 0) {
             filteredProducts.forEach(product => {
+                const lbpPrice = usdToLbp(product.price);
+                const formattedLbpPrice = formatLbpPrice(lbpPrice);
+                
                 productsHtml += `
-                    <div class="product-card">
+                    <div class="product-card" ${!product.inStock ? 'style="opacity: 0.8;"' : ''}>
                         ${product.featured ? '<div class="product-badge featured"><i class="fas fa-star"></i> Featured</div>' : ''}
                         ${product.new ? '<div class="product-badge new"><i class="fas fa-certificate"></i> New</div>' : ''}
+                        ${!product.inStock ? '<div class="product-badge out-of-stock"><i class="fas fa-times-circle"></i> Out of Stock</div>' : ''}
                         
-                        <div class="product-image">
+                        <div class="product-image ${!product.inStock ? 'out-of-stock' : ''}">
                             <img src="${product.image}" alt="${product.name}">
+                            ${!product.inStock ? '<div class="out-of-stock-overlay">Out of Stock</div>' : ''}
                         </div>
                         
                         <div class="product-info">
@@ -1601,19 +2059,35 @@
                             <h3 class="product-name">${product.name}</h3>
                             <p class="product-description">${product.description}</p>
                             <div class="product-price">
-                                <div class="price">$${product.price.toFixed(2)}<span class="price-unit"> / kg</span></div>
+                                <div class="price-container">
+                                    <div class="price">$${product.price.toFixed(2)}<span class="price-unit"> / ${product.category === 'Juices' ? 'bottle' : 'kg'}</span></div>
+                                    <div class="price-lbp">
+                                        <span class="lbp-flag"></span> ${formattedLbpPrice}
+                                    </div>
+                                </div>
+                                ${product.category === 'Juices' ? '<div><i class="fas fa-wine-bottle" style="color: var(--primary); font-size: 1.5rem;"></i></div>' : ''}
                             </div>
                             <div class="contact-options">
-                                <a href="https://wa.me/96171807480?text=Hello, I want to order ${encodeURIComponent(product.name)} for $${product.price} per kg" 
-                                   class="whatsapp-btn" target="_blank">
-                                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
-                                </a>
-                                <a href="tel:+96171807480" class="call-btn">
-                                    <i class="fas fa-phone"></i> Call to Order
-                                </a>
-                                <button onclick="addToCart(${product.id})" class="btn" style="background: var(--light); color: var(--dark); margin-top: 5px; width: 100%;">
-                                    <i class="fas fa-cart-plus"></i> Add to Cart
-                                </button>
+                                ${product.inStock ? `
+                                    <a href="https://wa.me/96171807480?text=Hello, I want to order ${encodeURIComponent(product.name)} for $${product.price} (${formattedLbpPrice})" 
+                                       class="whatsapp-btn" target="_blank">
+                                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                                    </a>
+                                    <a href="tel:+96171807480" class="call-btn">
+                                        <i class="fas fa-phone"></i> Call to Order
+                                    </a>
+                                    <button onclick="addToCart(${product.id})" class="btn" style="background: var(--light); color: var(--dark); margin-top: 5px; width: 100%;">
+                                        <i class="fas fa-cart-plus"></i> Add to Cart
+                                    </button>
+                                ` : `
+                                    <button class="whatsapp-btn out-of-stock-btn" disabled>
+                                        <i class="fas fa-times-circle"></i> Out of Stock
+                                    </button>
+                                    <button onclick="showNotification('${product.name} is currently out of stock. Please check back later!')" 
+                                            class="btn" style="background: var(--light); color: var(--dark); margin-top: 5px; width: 100%;">
+                                        <i class="fas fa-bell"></i> Notify When Available
+                                    </button>
+                                `}
                             </div>
                         </div>
                     </div>
@@ -1622,8 +2096,8 @@
         } else {
             productsHtml = `<div style="text-align: center; color: var(--gray); grid-column: 1/-1; padding: 40px;">
                 <i class="fas fa-box-open" style="font-size: 60px; margin-bottom: 20px; color: #ddd;"></i>
-                <h3>No products in this category</h3>
-                <p>Check back soon for new arrivals!</p>
+                <h3>No products found</h3>
+                <p>${currentFilter === 'out-of-stock' ? 'All products are currently in stock!' : 'Check back soon for new arrivals!'}</p>
             </div>`;
         }
         
@@ -1633,7 +2107,10 @@
     // Add to cart
     function addToCart(productId) {
         const product = products.find(p => p.id === productId);
-        if (!product) return;
+        if (!product || !product.inStock) {
+            showNotification('Sorry, this product is out of stock!');
+            return;
+        }
         
         const existingItem = cart.find(item => item.id === productId);
         
@@ -1655,28 +2132,36 @@
     // Update cart display
     function updateCartDisplay() {
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        const totalAmount = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalAmountUSD = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const totalAmountLBP = usdToLbp(totalAmountUSD);
         
         document.getElementById('cartTotalItems').textContent = totalItems;
         
         // Update cart content in modal
         const cartItems = document.getElementById('cartItems');
         const cartTotal = document.getElementById('cartTotal');
+        const cartTotalLBP = document.getElementById('cartTotalLBP');
         
         if (cart.length === 0) {
             cartItems.innerHTML = '<p style="text-align: center; color: var(--gray); padding: 20px;">Shopping cart is empty</p>';
         } else {
             let cartHtml = '';
             cart.forEach(item => {
+                const itemTotalUSD = (item.price * item.quantity).toFixed(2);
+                const itemTotalLBP = formatLbpPrice(usdToLbp(item.price * item.quantity));
+                
                 cartHtml += `
                     <div style="display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee;">
                         <div style="flex: 1;">
                             <strong>${item.name}</strong>
                             <div style="display: flex; align-items: center; gap: 10px; margin-top: 8px;">
                                 <button onclick="updateCartQuantity(${item.id}, ${item.quantity - 1})" style="width: 30px; height: 30px; border: none; background: var(--light); border-radius: 50%; cursor: pointer;">-</button>
-                                <span style="min-width: 30px; text-align: center;">${item.quantity} kg</span>
+                                <span style="min-width: 30px; text-align: center;">${item.quantity} ${getUnit(item.id)}</span>
                                 <button onclick="updateCartQuantity(${item.id}, ${item.quantity + 1})" style="width: 30px; height: 30px; border: none; background: var(--light); border-radius: 50%; cursor: pointer;">+</button>
-                                <span style="color: var(--primary); font-weight: 600; margin-left: 10px;">$${(item.price * item.quantity).toFixed(2)}</span>
+                                <span style="color: var(--primary); font-weight: 600; margin-left: 10px;">$${itemTotalUSD}</span>
+                            </div>
+                            <div style="color: var(--secondary); font-size: 0.9rem; margin-top: 5px;">
+                                <span class="lbp-flag" style="width: 15px; height: 11px;"></span> ${itemTotalLBP}
                             </div>
                         </div>
                         <button onclick="removeFromCart(${item.id})" style="background: none; border: none; color: #ff4757; font-size: 18px; cursor: pointer; padding: 5px;">
@@ -1688,15 +2173,22 @@
             cartItems.innerHTML = cartHtml;
         }
         
-        cartTotal.textContent = `$${totalAmount.toFixed(2)}`;
+        cartTotal.textContent = `$${totalAmountUSD.toFixed(2)}`;
+        cartTotalLBP.textContent = formatLbpPrice(totalAmountLBP);
         
         // Save cart
         localStorage.setItem('sanaaCart', JSON.stringify(cart));
     }
     
+    // Get unit for product
+    function getUnit(productId) {
+        const product = products.find(p => p.id === productId);
+        return product.category === 'Juices' ? 'bottle' : 'kg';
+    }
+    
     // Update product quantity in cart
     function updateCartQuantity(productId, newQuantity) {
-        if (newQuantity < 0.5) {
+        if (newQuantity < 1) {
             cart = cart.filter(item => item.id !== productId);
         } else {
             const item = cart.find(item => item.id === productId);
@@ -1731,16 +2223,32 @@
             return;
         }
         
-        let message = "Hello, I want to order:\n\n";
-        let total = 0;
+        let message = "🚚 *Souq Sanaa Order* 🚚\n\n";
+        message += "Hello, I want to order:\n\n";
+        let totalUSD = 0;
         
         cart.forEach(item => {
-            message += `- ${item.name} × ${item.quantity} kg: $${(item.price * item.quantity).toFixed(2)}\n`;
-            total += item.price * item.quantity;
+            const itemTotalUSD = (item.price * item.quantity).toFixed(2);
+            const itemTotalLBP = formatLbpPrice(usdToLbp(item.price * item.quantity));
+            message += `• ${item.name} × ${item.quantity} ${getUnit(item.id)}\n`;
+            message += `  Price: $${itemTotalUSD} (${itemTotalLBP})\n\n`;
+            totalUSD += item.price * item.quantity;
         });
         
-        message += `\nTotal: $${total.toFixed(2)}\n`;
-        message += "\nPlease contact me to confirm the order.";
+        const totalLBP = formatLbpPrice(usdToLbp(totalUSD));
+        message += `📦 *Total: $${totalUSD.toFixed(2)} (${totalLBP})*\n\n`;
+        
+        // Check for fast delivery eligibility
+        if (totalUSD >= 20) {
+            message += "🎉 *FREE DELIVERY* (Order over $20)\n";
+        } else {
+            message += "🚚 Delivery charge: $3 (Order under $20)\n";
+        }
+        
+        message += "\n📞 *FAST DELIVERY AVAILABLE* - Mention this for same-day delivery!\n";
+        message += "\n📍 Delivery Address: ________________\n";
+        message += "\n📱 Contact Number: ________________\n";
+        message += "\nPlease confirm the order and delivery details.";
         
         const whatsappUrl = `https://wa.me/96171807480?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
@@ -1822,18 +2330,47 @@
         if (products.length > 0) {
             adminHtml += '<div style="margin-bottom: 20px; color: var(--gray);">View Only - Edit products in the code</div>';
             
+            // Add product statistics
+            const inStockCount = products.filter(p => p.inStock).length;
+            const outOfStockCount = products.filter(p => !p.inStock).length;
+            
+            adminHtml += `
+                <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div style="background: #27ae60; color: white; padding: 15px; border-radius: 10px; flex: 1; min-width: 200px;">
+                        <div style="font-size: 1.5rem; font-weight: bold;">${products.length}</div>
+                        <div>Total Products</div>
+                    </div>
+                    <div style="background: #2ecc71; color: white; padding: 15px; border-radius: 10px; flex: 1; min-width: 200px;">
+                        <div style="font-size: 1.5rem; font-weight: bold;">${inStockCount}</div>
+                        <div>In Stock</div>
+                    </div>
+                    <div style="background: #e74c3c; color: white; padding: 15px; border-radius: 10px; flex: 1; min-width: 200px;">
+                        <div style="font-size: 1.5rem; font-weight: bold;">${outOfStockCount}</div>
+                        <div>Out of Stock</div>
+                    </div>
+                </div>
+            `;
+            
             products.forEach(product => {
+                const lbpPrice = formatLbpPrice(usdToLbp(product.price));
                 adminHtml += `
-                    <div style="display: flex; align-items: center; padding: 15px; border-bottom: 1px solid #eee;">
+                    <div style="display: flex; align-items: center; padding: 15px; border-bottom: 1px solid #eee; ${!product.inStock ? 'background: #f8f9fa;' : ''}">
                         <div style="width: 60px; height: 60px; border-radius: 8px; overflow: hidden; margin-right: 15px; flex-shrink: 0;">
                             <img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">
                         </div>
                         <div style="flex: 1;">
-                            <strong>${product.name}</strong>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <strong>${product.name}</strong>
+                                <div>
+                                    ${!product.inStock ? '<span style="background: #e74c3c; color: white; padding: 3px 8px; border-radius: 20px; font-size: 12px;">OUT OF STOCK</span>' : ''}
+                                    ${product.featured ? '<span style="background: #f39c12; color: white; padding: 3px 8px; border-radius: 20px; font-size: 12px; margin-left: 5px;">FEATURED</span>' : ''}
+                                    ${product.new ? '<span style="background: #3498db; color: white; padding: 3px 8px; border-radius: 20px; font-size: 12px; margin-left: 5px;">NEW</span>' : ''}
+                                </div>
+                            </div>
                             <div style="color: var(--gray); font-size: 14px; margin-top: 5px;">
-                                $${product.price} | ${product.category}
-                                ${product.featured ? ' | <span style="color: var(--secondary);">Featured</span>' : ''}
-                                ${product.new ? ' | <span style="color: #3498db;">New</span>' : ''}
+                                <span style="color: var(--primary); font-weight: bold;">$${product.price}</span> 
+                                (<span class="lbp-flag" style="width: 15px; height: 11px; display: inline-block;"></span> ${lbpPrice}) 
+                                | ${product.category}
                             </div>
                             <div style="font-size: 12px; color: var(--gray); margin-top: 5px;">${product.description}</div>
                         </div>
